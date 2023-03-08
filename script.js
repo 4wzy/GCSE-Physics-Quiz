@@ -1,18 +1,31 @@
-const questions = [
+// This line of code generates a random number between 0.1 and 20, and rounds it to 2 decimal points
+mass = twoDecimalPlaces(getRandomArbitrary(0.1, 20));
+velocity = twoDecimalPlaces(getRandomArbitrary(0.1, 20));
+distance = twoDecimalPlaces(getRandomArbitrary(0.1, 350));
+time = twoDecimalPlaces(getRandomArbitrary(0.1, 90));
+
+let questions = [
     {
-        question: "What is the kinetic energy of an object with mass 3kg and velocity 1.2ms^-1?",
-        answer: 2.16
+        question: `What is the kinetic energy of an object with mass ${mass}kg and velocity ${velocity}ms^-1?`,
+        answer: twoDecimalPlaces(0.5 * mass * velocity * velocity)
     },
     {
-        question: "Test 2",
-        answer: 2
+        question: `What is the speed of an object which travels ${distance}m in ${time} seconds?`,
+        answer: twoDecimalPlaces(distance / time)
     },
     {
         question: "Third question",
         answer: 3
     }
-]
+];
 
+function getRandomArbitrary(min, max) {
+    return Math.random() * (max - min) + min;
+}
+
+function twoDecimalPlaces(number) {
+    return Math.round(number * 100) / 100;
+}
 
 function displayQuestion() {
     const submitButton = document.querySelector('.submit-button');
@@ -48,7 +61,13 @@ function submitAnswer() {
     checkAnswer(userAnswerInput);
 
     const submitButton = document.querySelector('.submit-button');
-    submitButton.innerHTML = 'Next Question'
+    if (currentQuestion == (questions.length - 1)) {
+        submitButton.innerHTML = 'View results!'
+        submitButton.style.background = "linear-gradient(to right, rgb(226, 86, 21), rgb(40, 30, 220))";
+    }
+    else {
+        submitButton.innerHTML = 'Next Question'
+    }
     submitButton.onclick = nextQuestion;
 }
 
@@ -60,7 +79,7 @@ function nextQuestion() {
         displayQuestion();
     } else {
         const quizContainer = document.querySelector('#quiz-container');
-        resultDisplay.innerHTML += `<p> Quiz complete! You scored ${score} out of ${questions.length}.</p>`;
+        resultDisplay.innerHTML = `<h3>Quiz complete!</h3> <p>You scored ${score} out of ${questions.length}.</p>`;
     }
 }
 

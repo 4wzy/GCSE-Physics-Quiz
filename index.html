@@ -15,9 +15,11 @@
       <form id="quiz-container" class="quiz-container">
         <h2 id="quiz-question-number" class="quiz-question">Question 1:</h2>
         <p id="quiz-text">What is the kinetic energy of an object with mass 3kg and velocity 1.2ms^-1?</p>
-        <input type="number" name="user-answer" id="user-answer" class="quiz-answer-input">
+        <input type="number" step="0.01" name="user-answer" id="user-answer" class="quiz-answer-input" autofocus>
         
         <br><br>
+        <!-- Fake button below so that the form doesn't submit upon enter key -->
+        <button type="submit" disabled style="display: none" aria-hidden="true"></button>
         <button type="button" onclick="submitAnswer()" class="submit-button">Submit</button>
       </form>
       
