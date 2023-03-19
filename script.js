@@ -1,3 +1,6 @@
+// Function to generate random number between minimum and maximum values.
+const getRandomArbitrary = (min, max) => Math.random() * (max - min) + min;
+
 // This line of code generates a random number in a certain range and rounds it
 mass = Math.round(getRandomArbitrary(0, 20));
 velocity = Math.round(getRandomArbitrary(0, 20));
@@ -19,9 +22,6 @@ let questions = [
         answer: 3
     }
 ];
-
-// Function to generate random number between minimum and maximum values.
-const getRandomArbitrary = (min, max) => Math.random() * (max - min) + min;
 
 // Function to round a number to one decimal place.
 function oneDecimalPlaces(number) {
