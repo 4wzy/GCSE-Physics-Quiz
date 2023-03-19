@@ -2,35 +2,32 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-
-    <title>Physics Quiz</title>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <header>
-      <h1>Physics Quiz</h1>
-    </header>
-    <main>
-      <form id="quiz-container" class="quiz-container">
-        <h2 id="quiz-question-number" class="quiz-question">Question 1:</h2>
-        <p id="quiz-text">What is the kinetic energy of an object with mass 3kg and velocity 1.2ms^-1?</p>
-        <input type="number" step="0.01" name="user-answer" id="user-answer" class="quiz-answer-input" autofocus>
+
+    <div class="container">
+        <div class="card">
+          <h1 class="title"><img class="question-image" style="width:7em; height:3em;" ></h1>
+
+          <p id="quiz-text">What is the kinetic energy of an object with mass 3kg and velocity 1.2ms^-1?</p>
+
+          <input type="number" step="0.1" name="user-answer" id="user-answer" class="quiz-answer-input" autofocus>
+
+          <button class="btn" onclick="submitAnswer()">Submit</button>
+
+          <div id="results"></div>
+        </div>
+
+        <div class="blob"></div>
         
-        <br><br>
-        <!-- Fake button below so that the form doesn't submit upon enter key -->
-        <button type="submit" disabled style="display: none" aria-hidden="true"></button>
-        <button type="button" onclick="submitAnswer()" class="submit-button">Submit</button>
-      </form>
-      
-      <div id="results" class="score-display"></div>
-    </main>
+      </div>
 
-    <footer>
-      <p>&copy; Biddenham GCSE Physics Quiz 2023</p>
-    </footer>
-
-    <script src="script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-  </body>
+      <script src="script.js"></script>
+</body>
 </html>
+
+
+<!--  <p class="subtitle"> Question </p>
+
+<p>Answer box here.</p> -->

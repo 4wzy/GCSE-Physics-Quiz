@@ -1,17 +1,18 @@
-// This line of code generates a random number between 0.1 and 20, and rounds it to 2 decimal points
-mass = twoDecimalPlaces(getRandomArbitrary(0.1, 20));
-velocity = twoDecimalPlaces(getRandomArbitrary(0.1, 20));
-distance = twoDecimalPlaces(getRandomArbitrary(0.1, 350));
-time = twoDecimalPlaces(getRandomArbitrary(0.1, 90));
+// This line of code generates a random number in a certain range and rounds it
+mass = Math.round(getRandomArbitrary(0, 20));
+velocity = Math.round(getRandomArbitrary(0, 20));
+distance = Math.round(getRandomArbitrary(0, 350));
+time = Math.round(getRandomArbitrary(0, 90));
 
 let questions = [
     {
         question: `What is the kinetic energy of an object with mass ${mass}kg and velocity ${velocity}ms^-1?`,
-        answer: twoDecimalPlaces(0.5 * mass * velocity * velocity)
+        answer: oneDecimalPlaces(0.5 * mass * velocity * velocity),
+        img: "eq1.png"
     },
     {
         question: `What is the speed of an object which travels ${distance}m in ${time} seconds?`,
-        answer: twoDecimalPlaces(distance / time)
+        answer: oneDecimalPlaces(distance / time)
     },
     {
         question: "Third question",
@@ -19,30 +20,34 @@ let questions = [
     }
 ];
 
-function getRandomArbitrary(min, max) {
-    return Math.random() * (max - min) + min;
+// Function to generate random number between minimum and maximum values.
+const getRandomArbitrary = (min, max) => Math.random() * (max - min) + min;
+
+// Function to round a number to one decimal place.
+function oneDecimalPlaces(number) {
+    return Math.round(number * 10) / 10;
 }
 
-function twoDecimalPlaces(number) {
-    return Math.round(number * 100) / 100;
-}
-
+// Function to display a question on screen along with its associated image.
 function displayQuestion() {
-    const submitButton = document.querySelector('.submit-button');
+    const submitButton = document.querySelector('.btn');
     submitButton.innerHTML = 'Submit'
     submitButton.onclick = submitAnswer;
 
-    const quizQuestionNumber = document.querySelector('#quiz-question-number')
-    const quizText = document.querySelector('#quiz-text')
-    const resultDisplay = document.querySelector('#results')
+    const quizText = document.querySelector('#quiz-text');
+    const resultDisplay = document.querySelector('#results');
 
     resultDisplay.innerHTML = '';
     const question = questions[currentQuestion].question;
-    quizQuestionNumber.innerHTML = `Question ${currentQuestion + 1}`
     quizText.innerHTML = question;
+
+    // Setting image corresponding to current question
+    questionImage = document.querySelector('.question-image')
+    questionImage.src = questions[currentQuestion].img;
 
 }
 
+// Function to check if user's input matches the correct answer, display feedback and increment score.
 function checkAnswer(userAnswerInput) {
 
     const resultDisplay = document.querySelector('#results');
@@ -55,12 +60,13 @@ function checkAnswer(userAnswerInput) {
 
 }
 
+// Function called when the user submits their answer.
 function submitAnswer() {
     const userAnswerInput = parseFloat(document.getElementById('user-answer').value);
 
     checkAnswer(userAnswerInput);
 
-    const submitButton = document.querySelector('.submit-button');
+    const submitButton = document.querySelector('.btn');
     if (currentQuestion == (questions.length - 1)) {
         submitButton.innerHTML = 'View results!'
         submitButton.style.background = "linear-gradient(to right, rgb(226, 86, 21), rgb(40, 30, 220))";
@@ -71,6 +77,7 @@ function submitAnswer() {
     submitButton.onclick = nextQuestion;
 }
 
+// Function to set up the next question.
 function nextQuestion() {
     const resultDisplay = document.querySelector('#results');
 
@@ -83,6 +90,7 @@ function nextQuestion() {
     }
 }
 
+// Initialising the current question counter and score before displaying the first question.
 let currentQuestion = 0;
 let score = 0;
 displayQuestion();
